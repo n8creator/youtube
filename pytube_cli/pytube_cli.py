@@ -30,3 +30,7 @@ audio_stream = feed.streams\
             .download(filename=feed_title, filename_prefix='audio')
 os.rename(audio_stream, f"audio-{feed_title}.mp4")
 print('audio downloaded')
+
+
+# FFMPEG Callout Example
+# ffmpeg -i video.mp4 -i audio.mp4 -c copy output.mp4

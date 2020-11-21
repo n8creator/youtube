@@ -4,16 +4,18 @@ version = "0.1.0"
 description = ""
 authors = ["n8creator <n8creator@pm.me>"]
 packages = [
-  { include = "pytube" },
+  { include = "pytube_cli" },
 ]
 
 [tool.poetry.dependencies]
 python = "^3.6"
 
 [tool.poetry.dev-dependencies]
+pytube = "^10.0.0"
+ffmpeg-python = "^0.2.0"
 
 [tool.poetry.scripts]
-pytube-cli = "pytube.scripts.pytube_cli:main"
+pytube_cli = "pytube_cli.scripts.pytube_cli:main"
 
 [build-system]
 requires = ["poetry>=0.12"]

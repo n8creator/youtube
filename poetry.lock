@@ -1,7 +1,62 @@
-package = []
+[[package]]
+category = "dev"
+description = "Python bindings for FFmpeg - with complex filtering support"
+name = "ffmpeg-python"
+optional = false
+python-versions = "*"
+version = "0.2.0"
+
+[package.dependencies]
+future = "*"
+
+[package.extras]
+dev = ["future (0.17.1)", "numpy (1.16.4)", "pytest-mock (1.10.4)", "pytest (4.6.1)", "Sphinx (2.1.0)", "tox (3.12.1)"]
+
+[[package]]
+category = "dev"
+description = "Clean single-source support for Python 3 and 2"
+name = "future"
+optional = false
+python-versions = ">=2.6, !=3.0.*, !=3.1.*, !=3.2.*"
+version = "0.18.2"
+
+[[package]]
+category = "dev"
+description = "Python 3 library for downloading YouTube Videos."
+name = "pytube"
+optional = false
+python-versions = ">=3.6"
+version = "10.0.0"
+
+[package.dependencies]
+typing-extensions = "*"
+
+[[package]]
+category = "dev"
+description = "Backported and Experimental Type Hints for Python 3.5+"
+name = "typing-extensions"
+optional = false
+python-versions = "*"
+version = "3.7.4.3"
 
 [metadata]
-content-hash = "ae1f216c71b9b712a5c479d19bf075b718c35d9248fd89cb1eb7624528ec5ad1"
+content-hash = "c5a83d5536cb23b25436a45698d87aa656f003ef1756587095278fd0f88b1aea"
 python-versions = "^3.6"
 
 [metadata.files]
+ffmpeg-python = [
+    {file = "ffmpeg-python-0.2.0.tar.gz", hash = "sha256:65225db34627c578ef0e11c8b1eb528bb35e024752f6f10b78c011f6f64c4127"},
+    {file = "ffmpeg_python-0.2.0-py3-none-any.whl", hash = "sha256:ac441a0404e053f8b6a1113a77c0f452f1cfc62f6344a769475ffdc0f56c23c5"},
+]
+future = [
+    {file = "future-0.18.2.tar.gz", hash = "sha256:b1bead90b70cf6ec3f0710ae53a525360fa360d306a86583adc6bf83a4db537d"},
+]
+pytube = [
+    {file = "pytube-10.0.0-py3-none-any.whl", hash = "sha256:e59ec01f9fb49a60008ce1623c794731fb240aa116399582705a426f7202cb6d"},
+    {file = "pytube-10.0.0.tar.gz", hash = "sha256:85cefc2b6f8b47eb94f9a9d86ad7eccd1b32b147d3e2e307f56f7dab70bc42e9"},
+]
+typing-extensions = [
+    {file = "typing_extensions-3.7.4.3-py2-none-any.whl", hash = "sha256:dafc7639cde7f1b6e1acc0f457842a83e722ccca8eef5270af2d74792619a89f"},
+    {file = "typing_extensions-3.7.4.3-py3-none-any.whl", hash = "sha256:7cb407020f00f7bfc3cb3e7881628838e69d8f3fcab2f64742a5e76b2f841918"},
+    {file = "typing_extensions-3.7.4.3.tar.gz", hash = "sha256:99d4073b617d30288f569d3f13d2bd7548c3a7e4c8de87db09a9d29bb3a4a60c"},
+]
