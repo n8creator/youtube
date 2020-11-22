@@ -13,6 +13,7 @@ python = "^3.6"
 [tool.poetry.dev-dependencies]
 pytube = "^10.0.0"
 ffmpeg-python = "^0.2.0"
+flake8 = "^3.8.4"
 
 [tool.poetry.scripts]
 pytube_cli = "pytube_cli.scripts.pytube_cli:main"
