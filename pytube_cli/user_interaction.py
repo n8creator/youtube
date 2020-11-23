@@ -86,7 +86,19 @@ def get_extension():
         return(extension)
 
 
+def user_preferences():
+    """Function asking user for video/audio preferences to download and
+    returning these preferences as a tuple."""
+
+    print("Hello world")
+    # Storing params in variables
+    url = get_valid_url()
+    content = get_content_type()
+    extension = get_extension()
+
+    # Returning params in tuple
+    return(url, content, extension)
+
+
 if __name__ == "__main__":
-    get_valid_url()
-    get_content_type()
-    get_extension()
+    print(user_preferences())
