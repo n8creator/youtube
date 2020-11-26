@@ -1,5 +1,5 @@
-from pytube_cli import youtube_parser
-from pytube_cli import user_interaction
+from youtube import youtube_parser
+from youtube import user_interaction
 
 
 def process_stream():

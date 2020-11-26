@@ -4,7 +4,7 @@ version = "0.1.0"
 description = ""
 authors = ["n8creator <n8creator@pm.me>"]
 packages = [
-  { include = "pytube_cli" },
+  { include = "youtube" },
 ]
 
 [tool.poetry.dependencies]
@@ -17,7 +17,7 @@ flake8 = "^3.8.4"
 ffmpy = "^0.2.3"
 
 [tool.poetry.scripts]
-pytube_cli = "pytube_cli.scripts.pytube_cli:main"
+youtube = "youtube.scripts.youtube:main"
 
 [build-system]
 requires = ["poetry>=0.12"]

@@ -1,7 +1,7 @@
 pytube_cli:
-	poetry run pytube_cli
+	poetry run youtube
 
 lint:
-	poetry run flake8 pytube_cli
+	poetry run flake8 youtube
 
-.PHONY: pytube_cli lint
+.PHONY: youtube lint
