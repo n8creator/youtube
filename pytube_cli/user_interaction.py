@@ -25,7 +25,7 @@ def get_valid_url():
     # Printing info message if user entered correct URL to be parsed
     else:
         print('-' * 54)
-        print(f">>> URL to be parsed: {url}\n")
+        print(f">>> URL to be downloaded: {url}\n")
         return(url)
 
 
@@ -53,37 +53,37 @@ def get_content_type():
     # Printing info message if user entered 'audio' or 'video' type
     else:
         print('-' * 54)
-        print(f">>> {content.title()} will be downloaded.\n")
+        print(f">>> {content.title()} was selected.\n")
         return(content)
 
 
-def get_extension():
-    """Function asking user to specify extension of audio/video to be
+def get_format():
+    """Function asking user to specify format of audio/video to be
     downloaded (until he press 'quit' or enters 'mp3' or 'webm' strings)."""
 
-    # Asking user for extension of content to be downloaded
-    extension = input('Input extension of content to be downloaded: "mp4" or '
-                      '"webm" (or press \'quit\'): ')
+    # Asking user for format of content to be downloaded
+    format = input('Input format of content to be downloaded: "mp4" or '
+                   '"webm" (or press \'quit\'): ')
 
     # Checking if entered string equals to 'mp4' or 'webm'
-    while not re.search('mp4|webm', extension):
+    while not re.search('mp4|webm', format):
 
         # Quitting application in case when user entered 'quit'
-        if extension == 'quit':
+        if format == 'quit':
             print('-' * 54)
             print('>>> Application quitting...\n')
             quit()
 
-        # Otherwise asking user to enter 'mpr' or 'webm' or quit application
-        extension = input('String you have entered is not valid. Enter '
-                          '"mp4" or "webm" (or enter \'quit\'): ')
+        # Otherwise asking user to enter 'mp4' or 'webm' or quit application
+        format = input('String you have entered is not valid. Enter '
+                       '"mp4" or "webm format" (or enter \'quit\'): ')
 
-    # Printing info message if user entered 'mp4' or 'webm' type
+    # Printing info message if user entered 'mp4' or 'webm' format
     else:
         print('-' * 54)
-        print(f">>> Content in .{extension} format will be "
-              "downloaded.\n")
-        return(extension)
+        print(f">>> .{format} format was selected.\n")
+        print('*' * 54)
+        return(format)
 
 
 def get_params():
@@ -93,7 +93,7 @@ def get_params():
     # Storing params in variables
     url = get_valid_url()
     content = get_content_type()
-    extension = get_extension()
+    extension = get_format()
 
     # Returning params in tuple
     return(url, content, extension)
