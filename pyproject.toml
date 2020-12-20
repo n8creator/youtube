@@ -9,12 +9,12 @@ packages = [
 
 [tool.poetry.dependencies]
 python = "^3.6"
-
-[tool.poetry.dev-dependencies]
 pytube = "^10.0.0"
 ffmpeg-python = "^0.2.0"
 flake8 = "^3.8.4"
 ffmpy = "^0.2.3"
+
+[tool.poetry.dev-dependencies]
 
 [tool.poetry.scripts]
 youtube = "youtube.scripts.youtube:main"
