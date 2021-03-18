@@ -15,6 +15,7 @@ flake8 = "^3.8.4"
 ffmpy = "^0.2.3"
 
 [tool.poetry.dev-dependencies]
+autopep8 = "^1.5.6"
 
 [tool.poetry.scripts]
 youtube = "youtube.scripts.youtube:main"

@@ -14,7 +14,7 @@ def initializing_feed(url):
 def get_title(feed):
     """Function Returning Feed Title."""
     title = feed.title
-    return(re.sub('[!.?*]', '', title))
+    return(re.sub(r'[^\w\s-]', '', title))
 
 
 def get_quality(stream):
@@ -82,15 +82,18 @@ def download_video(url, content, extension):
         print('-' * 54)
 
 
-def get_audio(url, content, extension, title):
+def get_audio(url, type, extension, title):
 
     # Downloading Audio
-    download_audio(url, content, extension)
+    download_audio(url, type, extension)
 
     # Converting MP4/WEBM Audio to MP3 Format
     output = FFmpeg(
                     inputs={f"audio.{extension}": None},
                     outputs={f"{title}.mp3": None}
+                    # TODO Ниже присваивается статическое имя "audio", которое
+                    # подавляет ошибку
+                    # outputs={f"audio.mp3": None}
                     )
     output.run()
 
@@ -103,10 +106,10 @@ def get_audio(url, content, extension, title):
     print('*' * 54)
 
 
-def get_video(url, content, extension, title):
+def get_video(url, type, extension, title):
     # Downloading Audio & Video
-    download_audio(url, content, extension)
-    download_video(url, content, extension)
+    download_audio(url, type, extension)
+    download_video(url, type, extension)
 
     # Merge MP4/WEBM Audio & Video and Convert them to MP4 Format
     output = FFmpeg(

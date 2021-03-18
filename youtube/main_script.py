@@ -7,7 +7,7 @@ def process_stream():
     params = user_interaction.get_params()
 
     # Destucturing User-Specified Params
-    url, content, extension = params
+    url, type, extension = params
 
     # Initializing YouTube Feed
     feed = youtube_parser.initializing_feed(url)
@@ -16,10 +16,10 @@ def process_stream():
     title = youtube_parser.get_title(feed)
 
     # Downloading Content From YouTube
-    if content == 'audio':
-        youtube_parser.get_audio(url, content, extension, title)
-    if content == 'video':
-        youtube_parser.get_video(url, content, extension, title)
+    if type == 'audio':
+        youtube_parser.get_audio(url, type, extension, title)
+    if type == 'video':
+        youtube_parser.get_video(url, type, extension, title)
 
 
 if __name__ == "__main__":

@@ -29,32 +29,32 @@ def get_valid_url():
         return(url)
 
 
-def get_content_type():
+def get_type():
     """Function asking user to specify type of content to be downloaded (until
     he press 'quit' or enters 'audio' or 'video')."""
 
     # Asking user for type of content to be downloaded
-    content = input('Input content to be downloaded: "audio" or "video" '
+    type = input('Input content to be downloaded: "audio" or "video" '
                     '(or press \'quit\'): ')
 
     # Checking if entered string equals to 'audio' or 'video'
-    while not re.search('audio|video', content):
+    while not re.search('audio|video', type):
 
         # Quitting application in case when user entered 'quit'
-        if content == 'quit':
+        if type == 'quit':
             print('-' * 54)
             print('>>> Application quitting...\n')
             quit()
 
         # Otherwise asking user to input 'audio' or 'video' or quit application
-        content = input('String you have entered is not valid. Enter '
+        type = input('String you have entered is not valid. Enter '
                         '"video" or "audio" (or enter \'quit\'): ')
 
     # Printing info message if user entered 'audio' or 'video' type
     else:
         print('-' * 54)
-        print(f">>> {content.title()} was selected.\n")
-        return(content)
+        print(f">>> {type.title()} was selected.\n")
+        return type
 
 
 def get_format():
@@ -92,11 +92,11 @@ def get_params():
 
     # Storing params in variables
     url = get_valid_url()
-    content = get_content_type()
+    type = get_type()
     extension = get_format()
 
     # Returning params in tuple
-    return(url, content, extension)
+    return(url, type, extension)
 
 
 if __name__ == "__main__":
