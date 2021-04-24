@@ -116,7 +116,7 @@ def get_video(url, type, extension, title):
                     inputs={f"audio.{extension}": None,
                             f"video.{extension}": None
                             },
-                    outputs={f"{title}.mp4": None}
+                    outputs={f"{title}.mp4": '-c:v copy -strict experimental -c:a copy -strict experimental'}
                     )
     output.run()
 
