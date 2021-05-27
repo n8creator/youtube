@@ -11,3 +11,4 @@ dist/
 *.mp3
 *.webm
 *.log
+.history/

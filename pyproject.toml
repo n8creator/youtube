@@ -9,9 +9,8 @@ packages = [
 
 [tool.poetry.dependencies]
 python = "^3.6"
-pytube = "^10.0.0"
+pytube = "*"
 ffmpy = "^0.2.3"
-selenium = "^3.141.0"
 
 [tool.poetry.dev-dependencies]
 autopep8 = "^1.5.6"
