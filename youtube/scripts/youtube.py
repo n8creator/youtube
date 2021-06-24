@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 from youtube.main_script import process_stream
 
 
