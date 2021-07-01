@@ -17,6 +17,7 @@ def get_args():
             └── -p channel_id --n N  - parse info and save data into .csv
                                        about latest N videos from channel
             '''
+
     parser = argparse.ArgumentParser(
         description='Google Calendar quick helper app.',
         formatter_class=argparse.RawDescriptionHelpFormatter,
@@ -31,6 +32,10 @@ def get_args():
                         help='download video in HQ format')
     parser.add_argument('--a', action='store_true',
                         help='download audio and convert to MP3 format')
+    parser.add_argument('-p', default=None, type=str, metavar='channel_id',
+                        help='specify the "channel_id" value which may be \
+                            found in "<meta itemprop="channelId"...>" \
+                            field in source code')
     parser.add_argument('--n', default=None, type=int, metavar='N',
                         help='specify the number of objects, information of \
                             which which will be loaded into .csv file')
