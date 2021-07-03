@@ -12,3 +12,4 @@ dist/
 *.webm
 *.log
 .history/
+*.txt

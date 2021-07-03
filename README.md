@@ -7,6 +7,11 @@
 
 
 ## Package Installation For Debugging
+Install `ffmpeg` locally:
+```
+    $ sudo apt install ffmpeg -y
+```
+
 ```
     $ python -m venv .venv
     $ source .venv/bin/activate
