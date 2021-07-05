@@ -13,3 +13,4 @@ dist/
 *.log
 .history/
 *.txt
+*.csv

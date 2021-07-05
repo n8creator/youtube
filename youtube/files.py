@@ -1,5 +1,7 @@
 import os
 from termcolor import colored
+import csv
+import codecs
 
 
 def remove_files(*files: str):
@@ -22,6 +24,31 @@ def parse_file(filepath: str) -> list:
         exit(
             colored(f'ERROR: Script stopped, file {filepath} does not exist!',
                     'red'))
+
+
+def create_file(filename: str):
+    if os.path.isfile(filename):
+        os.remove(filename)
+        os.mknod(filename)
+        print(colored(f'Old "{filename}" file deleted, new one created.',
+                      'red'))
+    else:
+        os.mknod(filename)
+        print(f'Output file "{filename}" created')
+
+
+def write_csv(data: dict, filename: str):
+    # Codecs used to receive Excel file compatible with UTF-8
+    with codecs.open(filename, 'a', 'utf-8-sig') as f:
+        saver = csv.writer(f, delimiter=';', dialect='excel')
+        saver.writerow((data['url'],
+                        data['date'],
+                        data['title']))
+
+
+def write_data(url: str, filename: str):
+    with open(filename, 'a') as f:
+        f.write(url + '\n')
 
 
 if __name__ == "__main__":

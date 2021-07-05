@@ -2,6 +2,7 @@
 
 from youtube.cli import get_args
 from youtube.loader import load_hq_video, load_hq_audio, load_progressive
+from youtube.parser import parse_channel
 from youtube.files import parse_file
 
 
@@ -29,12 +30,12 @@ def main():
             else:
                 load_progressive(url=url)
 
-    # Parse info about videos into .csv file # TODO NOT COMPLETED YET!!!
+    # Parse info about videos into .csv file
     elif args.p:
         if args.n:
-            print('get info about last N videos from channel')
+            parse_channel(channel_url=args.p, links_limit=args.n)
         else:
-            print('get info about all videos in channel')
+            parse_channel(channel_url=args.p)
 
 
 if __name__ == "__main__":
