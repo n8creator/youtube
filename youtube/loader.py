@@ -1,44 +1,42 @@
+#!/usr/bin/env python3
+
 from pytube import YouTube
 from pytube.cli import on_progress
 from termcolor import colored
 import re
-from pprint import pprint
-
-from youtube.files import remove_temp_files
+from youtube.files import remove_files
 from youtube.mpeg import merge_mp4_audio_and_video, convert_audio_to_mp3
 
 
 PROFILES = {
     'progressive': {
-        'intro_message': 'Progressive video in .mp4 format downloading...',
+        'intro_message': 'file in highest available progressive resolution...',
         'params': {
             'progressive': True,
             'file_extension': 'mp4'
         },
         'order_by': 'resolution',
-        'out_message': '\nVideo was sussessfully downloaded!\n'
+        'out_message': 'Progressive MP4 file successfully downloaded!'
     },
     'video': {
-        'intro_message': '.mp4 video in highest available resolution '
-                         'downloading...',
+        'intro_message': '.mp4 video file in highest available resolution...',
         'params': {
             'progressive': False,
             'only_video': True,
             'file_extension': 'mp4'
         },
         'order_by': 'resolution',
-        'out_message': '\n.mp4 video was successfully downloaded!\n'
+        'out_message': '.mp4 video file was successfully downloaded!'
     },
     'audio': {
-        'intro_message': '.mp4 audio in highest available bitrate '
-                         'downloading...',
+        'intro_message': 'audio file in highest available bitrate...',
         'params': {
             'progressive': False,
             'only_audio': True,
             'file_extension': 'mp4'
         },
         'order_by': 'abr',
-        'out_message': '\n.mp4 audio was successfully downloaded!\n'
+        'out_message': 'Audio track successfully downloaded...'
     }
 }
 
@@ -50,7 +48,7 @@ def get_filename(url: str):
         url (str): some YouTube URL
 
     Returns:
-        [str]: output filename
+        [str] or [None]: output filename or None if URL is not correct
     """
     try:
         yt = YouTube(url=url)
@@ -58,8 +56,9 @@ def get_filename(url: str):
         title = re.sub(r'\s+', ' ', title)  # remove recurring spaces
         publish_date = yt.publish_date.strftime('%Y-%m-%d')
         slug = yt.video_id
-    except Exception:
-        print(f'ERROR: Video at requested url "{url}" does not exist.')
+    except (KeyError, Exception):
+        print(colored(f'ERROR: url "{url}" is not valid!\n', 'red'))
+        return None
     else:
         return f'{publish_date} - {title} [{slug}]'
 
@@ -75,33 +74,37 @@ def list_streams(url: str, settings: dict):
             order_by(settings['order_by']).\
             desc()
     except Exception as err:
-        print(f'Some error occured: {err}')
+        print(f'Some error occured while listing streams: {err}')
     else:
-        return list(yt)  # 'list' here required to format output while printing
+        return list(yt)  # 'list' here required to format output while print
 
 
 def download(url: str, settings: dict, filename: str):
-    print(colored(settings['intro_message']))
     try:
-        YouTube(url=url, on_progress_callback=on_progress).streams.\
+        yt = YouTube(url=url, on_progress_callback=on_progress).streams.\
             filter(**settings['params']).\
             order_by(settings['order_by']).\
             desc().\
-            first().\
-            download(filename=filename, skip_existing=False,
-                     timeout=10, max_retries=5)
+            first()
     except Exception as error:
-        print(f'Some error occured: {error}')
+        print(f'Some error occured while downloading: {error}')
     else:
-        print(colored(settings['out_message'], 'green'))
+        print(colored(f'Downloading "{yt.title}" {settings["intro_message"]}'))
+        yt.download(filename=filename, skip_existing=False, timeout=10,
+                    max_retries=5)
+        print(colored(f'\n{settings["out_message"]}', 'blue'))
 
 
 def load_hq_video(url: str):
     # Get output filename
     filename = get_filename(url=url)
 
-    # Remove old files if exists and download audio and video files
-    remove_temp_files('audio', 'video')
+    # Break execution if 'filename' return None
+    if filename is None:
+        return
+
+    # Remove old and temp files if exists, then download audio and video files
+    remove_files('audio.mp4', 'video.mp4', f'{filename}.mp4')
     download(url=url, settings=PROFILES['audio'], filename='audio')
     download(url=url, settings=PROFILES['video'], filename='video')
 
@@ -109,47 +112,60 @@ def load_hq_video(url: str):
     merge_mp4_audio_and_video(audio_file='audio', video_file='video',
                               output_filename=filename)
 
+    # Print summary message
+    print(colored(f'Video was saved as "{filename}.mp4"!', 'green'))
+
     # Remove temp files
-    remove_temp_files('audio', 'video')
+    remove_files('audio.mp4', 'video.mp4')
+
+    # Print empty line
+    print()
 
 
 def load_hq_audio(url: str):
     # Get output filename
     filename = get_filename(url=url)
 
-    # Remove old file if exist and download mp4 audio file
-    remove_temp_files('audio')
+    # Break execution if 'filename' return None
+    if filename is None:
+        return
+
+    # Remove old and temp files if exists, then download mp4 audio file
+    remove_files('audio.mp4', f'{filename}.mp3')
     download(url=url, settings=PROFILES['audio'], filename='audio')
 
     # Convert mp4 file into mp3 file
     convert_audio_to_mp3(audio_file='audio', output_filename=filename)
 
+    # Print summary message
+    print(colored(f'MP3 track was saved as "{filename}.mp3"!', 'green'))
+
     # Remove temp file
-    remove_temp_files('audio')
+    remove_files('audio.mp4')
+
+    # Print empty line
+    print()
 
 
 def load_progressive(url: str):
     # Get output filename
     filename = get_filename(url=url)
 
+    # Break execution if 'filename' return None
+    if filename is None:
+        return
+
     # Remove old file (not temp!) with the same name if it ever exist,
     # and download video in progressive format
-    remove_temp_files(filename)
+    remove_files(f'{filename}.mp4')
     download(url=url, settings=PROFILES['progressive'], filename=filename)
 
+    # Print summary message
+    print(colored(f'Video was saved as "{filename}.mp4"!', 'green'))
 
-url2 = 'https://www.youtube.com/watch?v=IMLwb8DIksk'
-url = 'https://www.youtube.com/watch?v=lskdjflsx4Xf4mmbecEM'
-url3 = 'https://www.youtube.com/watch?v=RaqSk9S6WY0'
+    # Print empty line
+    print()
 
 
 if __name__ == "__main__":
-    print(get_filename(url=url))
-
-    pprint(list_streams(url=url2, settings=PROFILES['progressive']))
-    pprint(list_streams(url=url2, settings=PROFILES['video']))
-    pprint(list_streams(url=url2, settings=PROFILES['audio']))
-
-    download(url=url2, settings=PROFILES['audio'], filename='audio')
-    download(url=url2, settings=PROFILES['video'], filename='video')
-    download(url=url2, settings=PROFILES['progressive'], filename='progr')
+    pass

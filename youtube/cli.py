@@ -48,7 +48,6 @@ def get_args():
     # Parse & return arguments
     args = parser.parse_args()
 
-    print(args)  # TODO Remove after debugging
     return args
 
 

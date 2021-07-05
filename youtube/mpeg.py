@@ -1,4 +1,6 @@
 from ffmpy import FFmpeg
+from termcolor import colored
+import subprocess
 
 
 def convert_audio_to_mp3(audio_file: str, output_filename: str):
@@ -7,12 +9,10 @@ def convert_audio_to_mp3(audio_file: str, output_filename: str):
         inputs={f"{audio_file}.mp4": None},
         outputs={f"{output_filename}.mp3": None}
     )
-    r.run()
+    r.run(stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
 
     # Print output message
-    print('\n' + '*' * 54)
-    print("\n" + "Audio was converted to .mp3!\n")
-    print('*' * 54)
+    print(colored('MP4 track was converted to MP3...'))
 
 
 def merge_mp4_audio_and_video(audio_file: str, video_file: str,
@@ -23,9 +23,7 @@ def merge_mp4_audio_and_video(audio_file: str, video_file: str,
         outputs={f"{output_filename}.mp4": '-c:v copy -strict \
                    experimental -c:a copy -strict experimental'}
     )
-    r.run()
+    r.run(stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
 
     # Print output message
-    print("\n" + '*' * 54)
-    print("\n" + "Audio and Video had been merged and saved as .mp4!\n")
-    print('*' * 54)
+    print(colored('Audio and video files were merged...'))

@@ -1,11 +1,14 @@
 import os
+from termcolor import colored
 
 
-def remove_temp_files(*files: str):
+def remove_files(*files: str):
+    """Remove old or temporary files.
+    """
     for file in files:
-        if os.path.isfile(f'{file}.mp4'):
-            print(f'Deleteng old file {file}.mp4...\n')
-            os.remove(f'{file}.mp4')
+        if os.path.isfile(file):
+            print(colored(f'File "{file}" was deleted'))
+            os.remove(file)
 
 
 def parse_file(filepath: str) -> list:
@@ -16,7 +19,9 @@ def parse_file(filepath: str) -> list:
         urls_list = list(dict.fromkeys(data))  # remove duplicate lines
         return list(filter(None, urls_list))  # remove empty values
     else:
-        exit(f'ERROR: Script stopped, file {filepath} does not exist!')
+        exit(
+            colored(f'ERROR: Script stopped, file {filepath} does not exist!',
+                    'red'))
 
 
 if __name__ == "__main__":
