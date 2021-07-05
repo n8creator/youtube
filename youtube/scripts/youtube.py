@@ -21,14 +21,12 @@ def main():
     # Process multiple URL's loaded from file
     elif args.f:
         urls_list = parse_file(args.f)
-        if args.hq:
-            for url in urls_list:
+        for url in urls_list:
+            if args.hq:
                 load_hq_video(url=url)
-        elif args.a:
-            for url in urls_list:
+            elif args.a:
                 load_hq_audio(url=url)
-        else:
-            for url in urls_list:
+            else:
                 load_progressive(url=url)
 
     # Parse info about videos into .csv file # TODO NOT COMPLETED YET!!!
