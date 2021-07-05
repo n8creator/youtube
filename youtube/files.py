@@ -16,8 +16,8 @@ def parse_file(filepath: str) -> list:
         with open(filepath, 'r') as f:
             urls = f.read()
         data = urls.split('\n')  # split data into url's list
-        urls_list = list(dict.fromkeys(data))  # remove duplicate lines
-        return list(filter(None, urls_list))  # remove empty values
+        urls_list = list(dict.fromkeys(data))  # remove duplicates
+        return list(filter(None, urls_list))  # remove empty
     else:
         exit(
             colored(f'ERROR: Script stopped, file {filepath} does not exist!',
@@ -25,4 +25,4 @@ def parse_file(filepath: str) -> list:
 
 
 if __name__ == "__main__":
-    print(parse_file('input.txt'))
+    pass
