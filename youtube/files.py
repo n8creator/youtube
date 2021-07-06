@@ -2,6 +2,7 @@ import os
 from termcolor import colored
 import csv
 import codecs
+from youtube.format import shorten_name
 
 
 def remove_files(*files: str):
@@ -9,7 +10,7 @@ def remove_files(*files: str):
     """
     for file in files:
         if os.path.isfile(file):
-            print(colored(f'File "{file}" was deleted'))
+            print(colored(f'File "{shorten_name(file)}" was deleted'))
             os.remove(file)
 
 

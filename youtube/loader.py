@@ -6,6 +6,7 @@ from termcolor import colored
 import re
 from youtube.files import remove_files
 from youtube.mpeg import merge_mp4_audio_and_video, convert_audio_to_mp3
+from youtube.format import shorten_name
 
 
 PROFILES = {
@@ -89,7 +90,9 @@ def download(url: str, settings: dict, filename: str):
     except Exception as error:
         print(f'Some error occured while downloading: {error}')
     else:
-        print(colored(f'Downloading "{yt.title}" {settings["intro_message"]}'))
+        print(
+            colored(f'Downloading "{shorten_name(yt.title)}" '
+                    f'{settings["intro_message"]}'))
         yt.download(filename=filename, skip_existing=False, timeout=10,
                     max_retries=5)
         print(colored(f'\n{settings["out_message"]}', 'blue'))
@@ -113,7 +116,8 @@ def load_hq_video(url: str):
                               output_filename=filename)
 
     # Print summary message
-    print(colored(f'Video was saved as "{filename}.mp4"!', 'green'))
+    print(colored(f'Video was saved as "{shorten_name(filename)}.mp4"!',
+                  'green'))
 
     # Remove temp files
     remove_files('audio.mp4', 'video.mp4')
@@ -138,7 +142,8 @@ def load_hq_audio(url: str):
     convert_audio_to_mp3(audio_file='audio', output_filename=filename)
 
     # Print summary message
-    print(colored(f'MP3 track was saved as "{filename}.mp3"!', 'green'))
+    print(colored(f'MP3 track was saved as "{shorten_name(filename)}.mp3"!',
+                  'green'))
 
     # Remove temp file
     remove_files('audio.mp4')
@@ -161,7 +166,8 @@ def load_progressive(url: str):
     download(url=url, settings=PROFILES['progressive'], filename=filename)
 
     # Print summary message
-    print(colored(f'Video was saved as "{filename}.mp4"!', 'green'))
+    print(colored(f'Video was saved as "{shorten_name(filename)}.mp4"!',
+                  'green'))
 
     # Print empty line
     print()
