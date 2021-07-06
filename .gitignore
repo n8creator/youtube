@@ -5,7 +5,6 @@ __pycache__/
 dist/
 .venv/
 .idea/
-.vscode/
 .coverage
 *.mp4
 *.mp3
