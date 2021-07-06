@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "n8creator_automation"
+name = "YouTube CLI downloader"
 version = "0.1.0"
 description = ""
 authors = ["n8creator <n8creator@pm.me>"]

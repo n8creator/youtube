@@ -75,7 +75,7 @@ python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
 
 [[package]]
 name = "pytube"
-version = "10.8.5"
+version = "10.9.0"
 description = "Python 3 library for downloading YouTube Videos."
 category = "main"
 optional = false
@@ -151,8 +151,8 @@ pyflakes = [
     {file = "pyflakes-2.3.1.tar.gz", hash = "sha256:f5bc8ecabc05bb9d291eb5203d6810b49040f6ff446a756326104746cc00c1db"},
 ]
 pytube = [
-    {file = "pytube-10.8.5-py3-none-any.whl", hash = "sha256:b3432b06d701b47af7793b194b57b5c121f293861874a37b86d832b7b8857b53"},
-    {file = "pytube-10.8.5.tar.gz", hash = "sha256:ed88d38e38206258ff74181f7776f5bfdb70fb835c32694b2c7e8131b51eb578"},
+    {file = "pytube-10.9.0-py3-none-any.whl", hash = "sha256:a3cd40b76e57f3de28e795b4cadcc0490836c5cbe1045e4e7649fd3de7e78681"},
+    {file = "pytube-10.9.0.tar.gz", hash = "sha256:c2ec2c13758a925df2d31306af9aa9f75eacb03b7f0475c3abf682b9a3c1d7dc"},
 ]
 termcolor = [
     {file = "termcolor-1.1.0.tar.gz", hash = "sha256:1d6d69ce66211143803fbc56652b41d73b4a400a2891d7bf7a1cdf4c02de613b"},
