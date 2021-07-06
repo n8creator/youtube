@@ -33,6 +33,8 @@ Supported combination of arguments and flags:
 ```
 
 Script may be used to download single or multiple files. See, how it works:
+[![asciicast](https://asciinema.org/a/Yh4Ee3B8itJLnFMfl2YsXDWSD.svg)](https://asciinema.org/a/Yh4Ee3B8itJLnFMfl2YsXDWSD)
+
 
 # 2. Installation
 ## 2.1. Install FFMpeg locally
@@ -73,7 +75,8 @@ $ poetry install
 
 After execution of `poetry install` command a new folder `.venv` must appear within the root directory of the project.
 
-### 2.4. Add script aliases for quick use Manually add script aliases into ~/.profile file via commands:
+## 2.4. Add script aliases for quick use
+Manually add script aliases into ~/.profile file via commands:
 ```
 $ echo "alias youtube='~/scripts/youtube/.venv/bin/youtube'" >> ~/.profile
 $ echo "alias youtube_update='cd ~/scripts/youtube/ && poetry update'" >> ~/.profile
