@@ -14,8 +14,8 @@ def get_args():
             ├── -f FILE              - download video from multiple URL's
             ├── -f FILE --hq         - download video in HQ from multiple URL's
             ├── -f FILE --a          - download audio from multiple URL's
-            └── -p channel_id --n N  - parse info and save data into .csv
-                                       about latest N videos from channel
+            └── -p CHANNEL_URL --n N - parse info and save data into .csv about
+                                       latest N videos from channel
             '''
 
     parser = argparse.ArgumentParser(
@@ -32,12 +32,11 @@ def get_args():
                         help='download video in HQ format')
     parser.add_argument('--a', action='store_true',
                         help='download audio and convert to MP3 format')
-    parser.add_argument('-p', default=None, type=str, metavar='channel_id',
-                        help='specify the "channel_id" value which may be \
-                            found in "<meta itemprop="channelId"...>" \
-                            field in source code')
+    parser.add_argument('-p', default=None, type=str, metavar='URL',
+                        help='specify the "channel_url" string like: \
+                            "https://www.youtube.com/c/topgtru/videos"')
     parser.add_argument('--n', default=None, type=int, metavar='N',
-                        help='specify the number of objects, information of \
+                        help='specify the number of items, information of \
                             which which will be loaded into .csv file')
 
     # Print '--help' if no arguments were passed
