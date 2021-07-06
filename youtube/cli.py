@@ -19,7 +19,7 @@ def get_args():
             '''
 
     parser = argparse.ArgumentParser(
-        description='Google Calendar quick helper app.',
+        description='YouTube CLI downloader quick help.',
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog=textwrap.dedent(epilog_text))
 

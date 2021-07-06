@@ -9,7 +9,7 @@ Basic commands and interface:
 ```
 usage: youtube [-h] [-s URL] [-f FILE] [--hq] [--a] [-p URL] [--n N]
 
-Google Calendar quick helper app.
+YouTube CLI downloader quick help.
 
 optional arguments:
   -h, --help  show this help message and exit
