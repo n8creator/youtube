@@ -7,6 +7,7 @@ import re
 from youtube.files import remove_files
 from youtube.mpeg import merge_mp4_audio_and_video, convert_audio_to_mp3
 from youtube.format import shorten_name
+from urllib.error import HTTPError
 
 
 PROFILES = {
@@ -57,8 +58,11 @@ def get_filename(url: str):
         title = re.sub(r'\s+', ' ', title)  # remove recurring spaces
         publish_date = yt.publish_date.strftime('%Y-%m-%d')
         slug = yt.video_id
-    except (KeyError, Exception):
-        print(colored(f'ERROR: url "{url}" is not valid!\n', 'red'))
+    except HTTPError:
+        print(colored(f'HTTP Error 404: url "{url}" not found!\n', 'red'))
+        return None
+    except Exception as e:
+        print(colored(f'Error: some unexpected error occured - "{e}"', 'red'))
         return None
     else:
         return f'{publish_date} - {title} [{slug}]'
