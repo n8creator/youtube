@@ -9,8 +9,12 @@ from termcolor import colored
 from youtube.loader import make_pause
 
 
-CSV_FILENAME = 'youtube.csv'
 URLS_FILENAME = 'temp_urls.txt'
+
+
+def get_output_file(channel_url: str):
+    ch = Channel(channel_url)
+    return f'{ch.channel_name}.csv'
 
 
 def parse_links(channel_url: str, output_filename: str, limit: int = None):
@@ -82,7 +86,8 @@ def parse_channel(channel_url: str, links_limit: int = None):
                 output_filename=URLS_FILENAME,
                 limit=links_limit)
 
-    parse_data(urls_file=URLS_FILENAME, output_csv=CSV_FILENAME)
+    parse_data(urls_file=URLS_FILENAME,
+               output_csv=get_output_file(channel_url=channel_url))
     remove_files(URLS_FILENAME)
 
 
