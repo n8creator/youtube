@@ -180,7 +180,7 @@ def load_progressive(url: str):
 
 
 def make_pause(min: int, max: int):
-    timeout = randrange(3, 9)
+    timeout = randrange(min, max)
     print(f'Making pause between requests for {timeout} seconds...\n')
     sleep(timeout)
 

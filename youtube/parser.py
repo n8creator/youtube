@@ -6,6 +6,7 @@ from youtube.files import create_file, write_csv, write_data,\
 from time import sleep
 from random import random
 from termcolor import colored
+from youtube.loader import make_pause
 
 
 CSV_FILENAME = 'youtube.csv'
@@ -46,12 +47,26 @@ def parse_data(urls_file: str, output_csv: str):
 
     # Parse URL's data and save result into output file
     counter = 1
+    first = True
     for url in urls:
+        # Make pause between requests except first request
+        if not first:
+            make_pause(min=5, max=10)
+        else:
+            first = False
+
+            # Add header row into output CSV before first request
+            data = {'url': 'URL', 'date': 'Date',
+                    'title': 'Title', 'views': 'Views'}
+            write_csv(data=data, filename=output_csv)
+
+        # Make requests
         yt = YouTube(url=url)
         data = {
             'url': url,
             'date': yt.publish_date.strftime('%Y-%m-%d'),
-            'title': yt.title
+            'title': yt.title,
+            'views': yt.views
         }
         write_csv(data=data, filename=output_csv)
 

@@ -44,7 +44,8 @@ def write_csv(data: dict, filename: str):
         saver = csv.writer(f, delimiter=';', dialect='excel')
         saver.writerow((data['url'],
                         data['date'],
-                        data['title']))
+                        data['title'],
+                        data['views']))
 
 
 def write_data(url: str, filename: str):
