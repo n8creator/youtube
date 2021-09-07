@@ -55,7 +55,7 @@ def parse_data(urls_file: str, output_csv: str):
     for url in urls:
         # Make pause between requests except first request
         if not first:
-            make_pause(min=5, max=10)
+            make_pause(min=8, max=17)
         else:
             first = False
 

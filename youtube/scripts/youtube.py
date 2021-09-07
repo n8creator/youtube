@@ -27,7 +27,7 @@ def main():
         for url in urls_list:
             # Sleep timeout between requests except first request
             if not first:
-                make_pause(min=5, max=10)
+                make_pause(min=10, max=20)
             else:
                 first = False
 
