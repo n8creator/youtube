@@ -4,6 +4,7 @@ from youtube.cli import get_args
 from youtube.loader import load_hq_video, load_hq_audio, load_progressive
 from youtube.parser import parse_channel
 from youtube.files import parse_file
+from youtube.loader import make_pause
 
 
 def main():
@@ -22,7 +23,15 @@ def main():
     # Process multiple URL's loaded from file
     elif args.f:
         urls_list = parse_file(args.f)
+        first = True
         for url in urls_list:
+            # Sleep timeout between requests except first request
+            if not first:
+                make_pause(min=5, max=10)
+            else:
+                first = False
+
+            # Execute requests
             if args.hq:
                 load_hq_video(url=url)
             elif args.a:
