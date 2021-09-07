@@ -97,8 +97,8 @@ def download(url: str, settings: dict, filename: str):
         print(
             colored(f'Downloading "{shorten_name(yt.title)}" '
                     f'{settings["intro_message"]}'))
-        yt.download(filename=filename, skip_existing=False, timeout=10,
-                    max_retries=5)
+        yt.download(filename=f'{filename}.mp4', skip_existing=False,
+                    timeout=10, max_retries=5)
         print(colored(f'\n{settings["out_message"]}', 'blue'))
 
 
