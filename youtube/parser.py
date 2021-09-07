@@ -7,6 +7,7 @@ from time import sleep
 from random import random
 from termcolor import colored
 from youtube.loader import make_pause
+from datetime import timedelta
 
 
 URLS_FILENAME = 'temp_urls.txt'
@@ -60,8 +61,8 @@ def parse_data(urls_file: str, output_csv: str):
             first = False
 
             # Add header row into output CSV before first request
-            data = {'url': 'URL', 'date': 'Date',
-                    'title': 'Title', 'views': 'Views'}
+            data = {'url': 'URL', 'date': 'Date', 'title': 'Title',
+                    'views': 'Views', 'length': 'Length'}
             write_csv(data=data, filename=output_csv)
 
         # Make requests
@@ -70,7 +71,8 @@ def parse_data(urls_file: str, output_csv: str):
             'url': url,
             'date': yt.publish_date.strftime('%Y-%m-%d'),
             'title': yt.title,
-            'views': yt.views
+            'views': yt.views,
+            'length': str(timedelta(seconds=yt.length))
         }
         write_csv(data=data, filename=output_csv)
 

@@ -45,7 +45,8 @@ def write_csv(data: dict, filename: str):
         saver.writerow((data['url'],
                         data['date'],
                         data['title'],
-                        data['views']))
+                        data['views'],
+                        data['length']))
 
 
 def write_data(url: str, filename: str):
