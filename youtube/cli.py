@@ -16,6 +16,8 @@ def get_args():
             ├── -f FILE --a          - download audio from multiple URL's
             └── -p CHANNEL_URL --n N - parse info and save data into .csv about
                                        latest N videos from channel
+
+        Pytube issues on GitHub: https://github.com/pytube/pytube/issues
             '''
 
     parser = argparse.ArgumentParser(
