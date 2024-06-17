@@ -2,7 +2,7 @@
 
 from youtube.cli import get_args
 from youtube.loader import load_hq_video, load_hq_audio, load_progressive
-from youtube.parser import parse_channel
+from youtube.parsers import parse_channel
 from youtube.files import parse_file
 from youtube.loader import make_pause
 

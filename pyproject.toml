@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "YouTube CLI downloader"
+name = "youtube"
 version = "0.1.0"
 description = ""
 authors = ["n8creator <n8creator@pm.me>"]
@@ -8,10 +8,11 @@ packages = [
 ]
 
 [tool.poetry.dependencies]
-python = "^3.6"
+python = "^3.8"
 pytube = "*"
 termcolor = "^1.1.0"
 ffmpy = "^0.3.0"
+ipython = "^8.7.0"
 
 [tool.poetry.dev-dependencies]
 autopep8 = "^1.5.6"
