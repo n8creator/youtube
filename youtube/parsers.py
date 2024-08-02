@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-from pytube import Channel, YouTube
+from pytubefix import Channel, YouTube
 from youtube.files import create_file, write_csv, write_data,\
     parse_file, remove_files
 from time import sleep

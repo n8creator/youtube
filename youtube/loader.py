@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
-from pytube import YouTube
-from pytube.cli import on_progress
+from pytubefix import YouTube
+from pytubefix.cli import on_progress
 from termcolor import colored
 import re
 from youtube.files import remove_files

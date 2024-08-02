@@ -17,7 +17,7 @@ def get_args():
             └── -p CHANNEL_URL --n N - parse info and save data into .csv about
                                        latest N videos from channel
 
-        Pytube issues on GitHub: https://github.com/pytube/pytube/issues
+        Pytubefix library on GitHub: https://github.com/JuanBindez/pytubefix
             '''
 
     parser = argparse.ArgumentParser(
